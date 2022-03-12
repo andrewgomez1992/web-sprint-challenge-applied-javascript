@@ -19,31 +19,31 @@ const Tabs = (topics) => {
     const topicsElem = document.createElement("div");
     const javascriptElem = document.createElement("div");
     const bootstrapElem = document.createElement("div");
-    const technology = document.createElement("div");
-    const jquery = document.createElement("div");
-    const nodejs = document.createElement("div")
+    const technologyElem = document.createElement("div");
+    const jqueryElem = document.createElement("div");
+    const nodejsElem = document.createElement("div")
 
-    // topicsElem.appendChild(topicsElem);
+
     parentElem1.appendChild(topicsElem);
     topicsElem.appendChild(javascriptElem);
     topicsElem.appendChild(bootstrapElem);
-    topicsElem.appendChild(technology);
-    topicsElem.appendChild(jquery);
-    topicsElem.appendChild(nodejs);
+    topicsElem.appendChild(technologyElem);
+    topicsElem.appendChild(jqueryElem);
+    topicsElem.appendChild(nodejsElem);
 
 
     javascriptElem.textContent = "javascript";
     bootstrapElem.textContent = "bootstrap";
-    technology.textContent = "technology";
-    jquery.textContent = "jquery";
-    nodejs.textContent = "node.js";
+    technologyElem.textContent = "technology";
+    jqueryElem.textContent = "jquery";
+    nodejsElem.textContent = "node.js";
 
     topicsElem.classList.add("topics");
     javascriptElem.classList.add("tab");
     bootstrapElem.classList.add("tab");
-    technology.classList.add("tab");
-    jquery.classList.add("tab");
-    nodejs.classList.add("tab");
+    technologyElem.classList.add("tab");
+    jqueryElem.classList.add("tab");
+    nodejsElem.classList.add("tab");
 
     return parentElem1;
 

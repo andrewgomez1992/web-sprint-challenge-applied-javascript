@@ -12,7 +12,7 @@ const Header = (title, date, temp) => {
     //  </div>
     //
 
-    const parentElem = document.querySelector('.header-container');
+    const parentElem = document.querySelector(".header-container");
 
     const headerElem = document.createElement("div");
     const dateElem = document.createElement("span");
@@ -40,7 +40,6 @@ const Header = (title, date, temp) => {
 
 
 }
-
 console.log(Header());
 
 const headerAppender = (selector) => {
