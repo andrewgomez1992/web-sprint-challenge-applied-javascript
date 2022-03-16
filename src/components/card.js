@@ -1,4 +1,11 @@
+// import { articles } from "../mocks/data"
+import axios from "axios"
+
+
+const entryPoint = document.querySelector(".cards-container");
+
 const Card = (article) => {
+
     // TASK 5
     // ---------------------
     // Implement this function, which should return the markup you see below.
@@ -18,37 +25,43 @@ const Card = (article) => {
     // </div>
     //
 
-    const parentElem2 = document.querySelector(".cards-container");
+    const divCard = document.createElement('div');
+    const headlineSection = document.createElement('div');
+    const author = document.createElement('div');
+    const divImg = document.createElement('div');
+    const img = document.createElement('img');
+    const spanName = document.createElement('span');
 
-    const card = document.createElement("div");
-    const headline = document.createElement("div");
-    const author = document.createElement("div");
-    const imageContainer = document.createElement("div");
-    const authorPhoto = document.createElement("img");
-    const authorName = document.createElement("span");
+    divCard.classList.add('card');
+    headlineSection.classList.add('headline');
+    author.classList.add('author');
+    divImg.classList.add('img-container')
 
-    parentElem2.appendChild(card);
-    card.appendChild(headline);
-    card.appendChild(author);
-    author.appendChild(imageContainer);
-    imageContainer.appendChild(authorPhoto);
-    author.appendChild(authorName);
+    headlineSection.textContent = article.headline;
+    img.src = article.authorPhoto;
+    spanName.textContent = `By ${article.authorName}`;
 
+    divCard.appendChild(headlineSection);
+    divCard.appendChild(author);
+    author.appendChild(divImg);
+    divImg.appendChild(img);
+    author.appendChild(spanName);
 
-    headline.textContent = "ES8: The Next Step in the Evolution of Javascript and What it Means For Your Projects";
-    authorName.textContent = "By SIR RUFF'N'STUFF"
+    divCard.addEventListener('click', () => {
+        console.log(article.headline);
+    })
 
-    card.classList.add("card");
-    headline.classList.add("headline");
-    author.classList.add("author");
-    imageContainer.classList.add("img-container");
-
-
-    return parentElem2;
+    return divCard
 
 }
 
+
+
+
+
+
 const cardAppender = (selector) => {
+
     // TASK 6
     // ---------------------
     // Implement this function that takes a css selector as its only argument.
@@ -57,6 +70,36 @@ const cardAppender = (selector) => {
     // Create a card from each and every article object in the response, using the Card component.
     // Append each card to the element in the DOM that matches the selector passed to the function.
     //
+
+    const selected = document.querySelector(selector)
+    axios.get('http://localhost:5000/api/articles').then(resp => {
+            const bootstrap = resp.data.articles.bootstrap
+            bootstrap.forEach(elem => {
+                selected.appendChild(Card(elem))
+            })
+            const javascript = resp.data.articles.javascript
+            javascript.forEach(elem => {
+                selected.appendChild(Card(elem))
+            })
+            const technology = resp.data.articles.technology
+            technology.forEach(elem => {
+                selected.appendChild(Card(elem))
+            })
+            const jquery = resp.data.articles.jquery
+            jquery.forEach(elem => {
+                selected.appendChild(Card(elem))
+            })
+            const node = resp.data.articles.node
+            node.forEach(elem => {
+                selected.appendChild(Card(elem))
+            })
+        })
+        .catch(err => {
+            console.error(err)
+        })
 }
+
+
+
 
 export { Card, cardAppender }

@@ -1,4 +1,7 @@
+import axios from "axios"
+
 const Header = (title, date, temp) => {
+
     // TASK 1
     // ---------------------
     // Implement this function taking `title`, `date` and `temp` as its 3 args and returning the markup below.
@@ -12,44 +15,41 @@ const Header = (title, date, temp) => {
     //  </div>
     //
 
-    const parentElem = document.querySelector(".header-container");
+    const headerDiv = document.createElement('div');
+    const spanDate = document.createElement('span');
+    const heading1 = document.createElement('h1');
+    const span2 = document.createElement('span');
 
-    const headerElem = document.createElement("div");
-    const dateElem = document.createElement("span");
-    const titleElem = document.createElement("h1");
-    const tempElem = document.createElement("span");
+    headerDiv.classList.add('header');
+    spanDate.classList.add('date');
+    span2.classList.add('temp');
 
+    headerDiv.appendChild(spanDate);
+    headerDiv.appendChild(heading1);
+    headerDiv.appendChild(span2);
 
-    parentElem.appendChild(headerElem);
-    headerElem.appendChild(dateElem);
-    headerElem.appendChild(titleElem);
-    headerElem.appendChild(tempElem);
+    heading1.textContent = title;
+    spanDate.textContent = date;
+    span2.textContent = temp;
 
-
-    dateElem.textContent = "JANUARY 6, 2021";
-    titleElem.textContent = "Lambda Times";
-    tempElem.textContent = "26°";
-
-
-    headerElem.classList.add("header");
-    dateElem.classList.add("date");
-    tempElem.classList.add("temp");
-
-
-    return parentElem;
+    return headerDiv;
 
 
 }
-console.log(Header());
 
 const headerAppender = (selector) => {
+
     // TASK 2
     // ---------------------
     // Implement this function taking a css selector as its only argument.
     // It should create a header using the Header component above, passing arguments of your choosing.
     // It should append the header to the element in the DOM that matches the given selector.
     //
-    const parentElem = document.querySelector("header");
+
+    const selectorDate = document.querySelector(selector);
+    selectorDate.appendChild(Header(
+        'Lambda Times', 'December 3, 2021', '32°F'
+    ))
 
 }
 
